@@ -124,8 +124,7 @@ export default function Home() {
           ))}
         </div>
         <ScrollArea className="border max-h-50 h-50 w-full mt-8">
-          {loading && <Item>Loading...</Item>}
-          {searchData && searchData.length > 0 && !loading ? (
+          {searchData && searchData.length > 0 ? (
             searchData.map((part) => (
               <React.Fragment key={part.partId}>
                 <Item>
@@ -134,6 +133,8 @@ export default function Home() {
                 <Separator />
               </React.Fragment>
             ))
+          ) : loading ? (
+            <Item>Loading...</Item>
           ) : (
             <Item>No results found.</Item>
           )}
