@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { Item } from '@/components/ui/item';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
+import { ShapeNoteInput } from '@/components/ui/shape-note-input';
 
 interface SongPart {
   songNumber: string;
@@ -112,20 +113,10 @@ export default function Home() {
             Search for Sacred Harp songs by tune.
           </p>
         </div>
-        <div className="flex flex-row gap-4 mt-10 text-base font-medium">
-          <Button variant="outline" size="icon" onClick={() => updateNote('f')}>
-            <TriangleRightIcon />
-          </Button>
-          <Button variant="outline" size="icon" onClick={() => updateNote('s')}>
-            <CircleIcon />
-          </Button>
-          <Button variant="outline" size="icon" onClick={() => updateNote('l')}>
-            <SquareIcon />
-          </Button>
-          <Button variant="outline" size="icon" onClick={() => updateNote('m')}>
-            <DiamondIcon />
-          </Button>
-        </div>
+        <ShapeNoteInput
+          className="mt-10 text-base font-medium"
+          handleShapeNote={updateNote}
+        />
         <div className="grid grid-cols-4 sm:grid-cols-8 w-full mt-5 text-base font-medium">
           {Object.entries(notes).map(([key, value], i) => (
             <Item
