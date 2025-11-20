@@ -22,7 +22,9 @@ export function ShapeNoteList({
 }) {
   return (
     <ScrollArea className={cn(className, 'border rounded-md')} {...props}>
-      {parts && parts.length > 0 ? (
+      {loading ? (
+        <Item>Loading...</Item>
+      ) : parts && parts.length > 0 ? (
         parts.map((part) => (
           <React.Fragment key={part.partId}>
             <Item className="min-w-4">
@@ -31,8 +33,6 @@ export function ShapeNoteList({
             <Separator />
           </React.Fragment>
         ))
-      ) : loading ? (
-        <Item>Loading...</Item>
       ) : (
         <Item>No results found.</Item>
       )}
