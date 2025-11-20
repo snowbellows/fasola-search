@@ -13,6 +13,7 @@ import { Item } from '@/components/ui/item';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { ShapeNoteInput } from '@/components/ui/shape-note-input';
+import { ShapeNoteDisplay } from '@/components/ui/shape-note-display';
 
 interface SongPart {
   songNumber: string;
@@ -87,21 +88,6 @@ export default function Home() {
     setSearchData(null);
   }
 
-  function noteIcon(note: string | null) {
-    switch (note) {
-      case 'f':
-        return <TriangleRightIcon />;
-      case 's':
-        return <CircleIcon />;
-      case 'l':
-        return <SquareIcon />;
-      case 'm':
-        return <DiamondIcon />;
-      default:
-        return null;
-    }
-  }
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-16 px-16 bg-white dark:bg-black sm:items-start">
@@ -117,16 +103,11 @@ export default function Home() {
           className="mt-10 text-base font-medium"
           handleShapeNote={updateNote}
         />
-        <div className="grid grid-cols-4 sm:grid-cols-8 w-full mt-5 text-base font-medium">
-          {Object.entries(notes).map(([key, value], i) => (
-            <Item
-              key={key}
-              className={i === currentNoteIndex ? 'text-green-600' : ''}
-            >
-              {noteIcon(value) || <p className="w-full text-center">{i + 1}</p>}
-            </Item>
-          ))}
-        </div>
+        <ShapeNoteDisplay
+          notes={notes}
+          highlightIndex={currentNoteIndex}
+          className="w-full sm:w-100 mt-5"
+        />
         <div className="mt-5">
           <Button onClick={() => handleClear()}>Clear</Button>
         </div>
