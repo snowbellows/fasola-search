@@ -1,19 +1,10 @@
 'use client';
 
-import * as React from 'react';
-import {
-  CircleIcon,
-  TriangleRightIcon,
-  SquareIcon,
-  DiamondIcon,
-} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
-import { Item } from '@/components/ui/item';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
 import { ShapeNoteInput } from '@/components/ui/shape-note-input';
 import { ShapeNoteDisplay } from '@/components/ui/shape-note-display';
+import { ShapeNoteList } from '@/components/ui/shape-note-list';
 
 interface SongPart {
   songNumber: string;
@@ -111,22 +102,11 @@ export default function Home() {
         <div className="mt-5">
           <Button onClick={() => handleClear()}>Clear</Button>
         </div>
-        <ScrollArea className="border max-h-50 h-40 w-full mt-8 rounded-md">
-          {searchData && searchData.length > 0 ? (
-            searchData.map((part) => (
-              <React.Fragment key={part.partId}>
-                <Item className="min-w-4">
-                  {part.songNumber} - {part.songName} ({part.name})
-                </Item>
-                <Separator />
-              </React.Fragment>
-            ))
-          ) : loading ? (
-            <Item>Loading...</Item>
-          ) : (
-            <Item>No results found.</Item>
-          )}
-        </ScrollArea>
+        <ShapeNoteList
+          parts={searchData}
+          loading={loading}
+          className="h-40 sm:h-100 w-full mt-8"
+        />
       </main>
     </div>
   );
