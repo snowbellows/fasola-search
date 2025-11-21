@@ -10,13 +10,13 @@ import { cn } from '@/lib/utils';
 function noteIcon(note: string | null) {
   switch (note) {
     case 'f':
-      return <TriangleRightIcon />;
+      return <TriangleRightIcon aria-label="Fa" />;
     case 's':
-      return <CircleIcon />;
+      return <CircleIcon aria-label="So" />;
     case 'l':
-      return <SquareIcon />;
+      return <SquareIcon aria-label="La" />;
     case 'm':
-      return <DiamondIcon />;
+      return <DiamondIcon aria-label="Mi" />;
     default:
       return null;
   }
